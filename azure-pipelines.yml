@@ -24,6 +24,17 @@ stages:
             npm install
             npm run build
           displayName: 'npm install and build'
+        - task: ArchiveFiles@2
+          displayName: "Archive output"
+          inputs:
+            rootFolderOrFile: '$(System.DefaultWorkingDirectory)/albatross/dist'
+            includeRootFolder: false
+            archiveFile: '$(Build.ArtifactStagingDirectory)/albatross.zip'
+        - task: PublishBuildArtifacts@1
+          displayName: "Publish Artifact"
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)/albatross.zip'
+            ArtifactName: 'albatross'
   - stage: Test
     displayName: Test Stage
     jobs:
