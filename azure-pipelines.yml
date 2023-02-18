@@ -8,15 +8,19 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+stages:
+  - stage: Build
+    displayName: Build Stage
+    jobs:
+      - job: BuildJob  
+        steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '16.x'
+          displayName: 'Install Node.js'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '16.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    cd albatross
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+        - script: |
+            cd albatross
+            npm install
+            npm run build
+          displayName: 'npm install and build'
