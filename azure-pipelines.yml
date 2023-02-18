@@ -12,10 +12,10 @@ variables:
   azureSubscription: '502cd1a5-30a8-4534-9279-049242770497'
 
   # Web app name
-  webAppName: ''
+  webAppName: 'alba1thor'
 
   # Environment name
-  environmentName: ''
+  environmentName: 'alba1thor'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -37,6 +37,7 @@ stages:
 
     - script: |
         cd albatross
+        npm install -g yarn
         yarn install
         yarn run build --if-present
         yarn run test --if-present
@@ -74,6 +75,6 @@ stages:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
-              runtimeStack: 'NODE|10.10'
+              runtimeStack: 'NODE|16.00'
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'
+              startUpCommand: 'yarn run start'
