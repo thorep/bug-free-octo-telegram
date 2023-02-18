@@ -8,6 +8,10 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+
+variables:
+  imageName: 'pipelines-javascript-docker'
+
 stages:
   - stage: Build
     displayName: Build Stage
@@ -35,6 +39,12 @@ stages:
           inputs:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)/albatross.zip'
             ArtifactName: 'albatross'
+        - task: Docker@2
+          displayName: Build Docker image
+          inputs:
+            repository: $(imageName)
+            command: build
+            Dockerfile: src/Dockerfile
   - stage: Test
     displayName: Test Stage
     jobs:
