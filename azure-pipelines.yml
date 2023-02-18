@@ -19,4 +19,4 @@ steps:
     cd albatross
     yarn install
     yarn run build
-  displayName: 'npm install and build'
+  displayName: 'yarn install and build'
