@@ -24,3 +24,16 @@ stages:
             npm install
             npm run build
           displayName: 'npm install and build'
+  - stage: Test
+    displayName: Test Stage
+    jobs:
+      - job: TestJob
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '16.x'
+            displayName: 'Install Node.js'
+
+          - script: |
+              echo "test"
+            displayName: 'npm install and build'
