@@ -44,7 +44,7 @@ stages:
           inputs:
             repository: $(imageName)
             command: build
-            Dockerfile: src/Dockerfile
+            Dockerfile: ./Dockerfile
   - stage: Test
     displayName: Test Stage
     jobs:
