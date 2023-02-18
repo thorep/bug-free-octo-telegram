@@ -31,7 +31,7 @@ stages:
         - task: ArchiveFiles@2
           displayName: "Archive output"
           inputs:
-            rootFolderOrFile: '$(System.DefaultWorkingDirectory)/albatross/dist'
+            rootFolderOrFile: '$(System.DefaultWorkingDirectory)/albatross'
             includeRootFolder: false
             archiveFile: '$(Build.ArtifactStagingDirectory)/albatross.zip'
         - task: PublishBuildArtifacts@1
