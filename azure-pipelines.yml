@@ -45,6 +45,12 @@ stages:
             repository: $(imageName)
             command: build
             Dockerfile: ./albatross/Dockerfile
+        - task: AzureRmWebAppDeployment@4
+          inputs:
+            ConnectionType: 'AzureRM'
+            azureSubscription: 'Azure subscription 1 (11983a98-f8fd-44f8-9458-06fc700f5941)'
+            appType: 'webAppHyperVContainer'
+            WebAppName: 'albatross1'
   - stage: Test
     displayName: Test Stage
     jobs:
